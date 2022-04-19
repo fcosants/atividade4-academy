@@ -4,7 +4,7 @@ Feature: Consultar usuários
     Para ter as informações de todos os usuários
 
     Scenario: Listar usuarios
-        Given url "https://crud-api-academy.herokuapp.com/api/v1"
+        Given url baseUrl
         And path "users"
         When method get
         Then status 200

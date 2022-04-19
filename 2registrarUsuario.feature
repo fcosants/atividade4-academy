@@ -4,8 +4,7 @@ Feature: Criar Usuario
     Para poder manipular estas informações livremente
 
     Background: Variável de url, nome e e-mail 
-        * def payload = {name : "Chico", email : "chico@g.com"}
-        * def baseUrl = "https://crud-api-academy.herokuapp.com/api/v1"
+        * def payload = {name : "Luffy", email : "luffy@g.com"}
          Given url baseUrl
          And path "users"
         
@@ -13,7 +12,9 @@ Feature: Criar Usuario
             And request payload
             When method post
             Then status 201
-            And match response contains { name:"Chico", email: "chico@g.com" }
+            And match response contains { name:"Luffy", email: "luffy@g.com" }
+            * def FcoSantos = response.id
+            * def Francisco = call read("hook.feature@deletar")
 
         Scenario: Registrar usuário com email inválido
             And request {name : "Juma", email : "chicog.com"}
@@ -21,6 +22,7 @@ Feature: Criar Usuario
             Then status 400
 
         Scenario: Registrar um usuário com e-mail já utilizado
+           * def baseId = call read ("hook.feature@registrar")
             And request {name : "kksh", email : "chico@g.com"}
             When method post
             Then status 422
