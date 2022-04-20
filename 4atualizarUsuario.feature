@@ -42,5 +42,5 @@ Background: Variável de url, nome e e-mail
         Scenario: Atualizar um e-mail com mais de 60 caracteres
             And path "users", "d67aacba-5e61-40bb-973b-e8f35cf4647c"
             And request {name : "Maria", email: "chicochicochicochicochicochicochicochicochicochicochicochicochico@g.com"}
-            When method post
-            Then status 404
+            When method put
+            Then status 400
